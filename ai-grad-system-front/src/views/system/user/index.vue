@@ -138,6 +138,7 @@
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { getUserList, deleteUser, resetPassword } from '@/api/user'
 
 const loading = ref(false)
 const tableData = ref([])
@@ -201,19 +202,33 @@ const rules = reactive({
 
 const dialogTitle = computed(() => isEdit.value ? '编辑用户' : '新增用户')
 
-const loadData = () => {
+const loadData = async () => {
   loading.value = true
-  setTimeout(() => {
-    tableData.value = [
-      { id: '1', username: 'admin', realName: '管理员', organization: '泉州市教育局', roles: '超级管理员', phone: '13800138000', email: 'admin@example.com', status: 'normal', createTime: '2026-01-01 00:00:00' },
-      { id: '2', username: 'teacher01', realName: '王老师', organization: '泉州市实验小学', roles: '教师', phone: '13800138001', email: 'wang@example.com', status: 'normal', createTime: '2026-02-15 10:30:00' },
-      { id: '3', username: 'teacher02', realName: '李老师', organization: '泉州市第二小学', roles: '教师', phone: '13800138002', email: 'li@example.com', status: 'normal', createTime: '2026-02-16 11:30:00' },
-      { id: '4', username: 'student01', realName: '张明', organization: '泉州市实验小学', roles: '学生', phone: '13800138003', email: 'zhang@example.com', status: 'normal', createTime: '2026-03-01 08:00:00' },
-      { id: '5', username: 'parent01', realName: '张父', organization: '泉州市实验小学', roles: '家长', phone: '13800138004', email: 'zhangfu@example.com', status: 'normal', createTime: '2026-03-01 08:30:00' },
-    ]
-    pagination.total = tableData.value.length
+  try {
+    const { data } = await getUserList({
+      page: pagination.page,
+      pageSize: pagination.pageSize,
+      username: searchForm.username,
+      realName: searchForm.realName,
+      userType: searchForm.role,
+      status: '',
+    })
+
+    // 后端返回的数据格式：data.list, data.total
+    // 需要将后端的 userType 转换为前端需要的 roles 字段
+    tableData.value = (data.list || []).map(item => ({
+      ...item,
+      roles: item.userType || '学生', // 将 userType 映射为 roles
+    }))
+    pagination.total = data.total || 0
+  } catch (error) {
+    console.error('加载用户列表失败:', error)
+    ElMessage.error('加载用户列表失败')
+    tableData.value = []
+    pagination.total = 0
+  } finally {
     loading.value = false
-  }, 300)
+  }
 }
 
 const resetForm = () => {
@@ -252,12 +267,24 @@ const submitForm = async () => {
   await formRef.value.validate(async (valid) => {
     if (valid) {
       submitting.value = true
-      setTimeout(() => {
-        submitting.value = false
+      try {
+        const { saveUser } = await import('@/api/user')
+        if (isEdit.value) {
+          const { updateUser } = await import('@/api/user')
+          await updateUser(form)
+          ElMessage.success('修改成功')
+        } else {
+          await saveUser(form)
+          ElMessage.success('新增成功')
+        }
         dialogVisible.value = false
-        ElMessage.success(isEdit.value ? '修改成功' : '新增成功')
         loadData()
-      }, 500)
+      } catch (error) {
+        console.error('保存用户失败:', error)
+        ElMessage.error(error.response?.data?.message || '保存失败')
+      } finally {
+        submitting.value = false
+      }
     }
   })
 }
@@ -270,7 +297,7 @@ const handleResetPwd = (row) => {
   resetPwdVisible.value = true
 }
 
-const submitResetPwd = () => {
+const submitResetPwd = async () => {
   if (!resetPwdForm.newPassword) {
     ElMessage.warning('请输入新密码')
     return
@@ -283,25 +310,41 @@ const submitResetPwd = () => {
     ElMessage.warning('密码长度不能少于 6 位')
     return
   }
-  resetPwdVisible.value = false
-  ElMessage.success('密码重置成功')
+  try {
+    await resetPassword(resetPwdForm.id)
+    resetPwdVisible.value = false
+    ElMessage.success('密码重置成功')
+  } catch (error) {
+    console.error('重置密码失败:', error)
+    ElMessage.error(error.response?.data?.message || '重置密码失败')
+  }
 }
 
 const handleDelete = async (row) => {
   try {
     await ElMessageBox.confirm(`确认删除用户"${row.username}"吗？`, '提示', { type: 'warning' })
+    await deleteUser(row.id)
     ElMessage.success('删除成功')
     loadData()
-  } catch (e) {}
+  } catch (e) {
+    if (e !== 'cancel') {
+      console.error('删除失败:', e)
+    }
+  }
 }
 
 const handleBatchDelete = async () => {
   try {
     await ElMessageBox.confirm(`确认删除选中的 ${selectedIds.value.length} 个用户吗？`, '提示', { type: 'warning' })
+    await deleteUser(selectedIds.value.join(','))
     ElMessage.success('批量删除成功')
     selectedIds.value = []
     loadData()
-  } catch (e) {}
+  } catch (e) {
+    if (e !== 'cancel') {
+      console.error('批量删除失败:', e)
+    }
+  }
 }
 
 const handleSelectionChange = (selection) => {
