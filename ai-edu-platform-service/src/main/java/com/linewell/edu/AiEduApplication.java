@@ -1,0 +1,17 @@
+package com.linewell.edu;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * Spring Boot 启动类
+ */
+@SpringBootApplication
+@MapperScan("com.linewell.edu.mapper")
+public class AiEduApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(AiEduApplication.class, args);
+    }
+}
