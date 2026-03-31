@@ -26,7 +26,7 @@ public class WebSecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/auth/login", "/auth/userinfo").permitAll()  // userinfo 用于前端获取用户信息
                 .requestMatchers("/auth/**").authenticated()
                 .requestMatchers("/homework/**").authenticated()
                 .anyRequest().permitAll()

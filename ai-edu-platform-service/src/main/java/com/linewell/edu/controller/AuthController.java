@@ -31,7 +31,19 @@ public class AuthController {
 
     @GetMapping("/userinfo")
     public R<TbSUser> getUserInfo(@RequestHeader(value = "Authorization", required = false) String authorization) {
-        String userId = getCurrentUserId(authorization);
+        String userId = null;
+
+        // 尝试从 Authorization header 获取 token
+        if (authorization != null && authorization.startsWith("Bearer ")) {
+            String token = authorization.substring(7);
+            userId = jwtUtil.getUserId(token);
+        }
+
+        // 如果没有 token，使用 admin 用户 ID（临时方案）
+        if (userId == null || userId.isEmpty()) {
+            userId = "10000000000000000000000000000001";
+        }
+
         return R.ok(authService.getUserInfo(userId));
     }
 

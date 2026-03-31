@@ -22,7 +22,7 @@ export function login(data) {
  */
 export function getUserInfo() {
   return request({
-    url: '/auth/info',
+    url: '/auth/userinfo',
     method: 'get',
   })
 }
