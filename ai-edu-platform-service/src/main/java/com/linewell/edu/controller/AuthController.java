@@ -1,10 +1,13 @@
 package com.linewell.edu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.linewell.edu.common.R;
 import com.linewell.edu.entity.TbSUser;
+import com.linewell.edu.mapper.TbSUserMapper;
 import com.linewell.edu.service.IAuthService;
 import com.linewell.edu.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,6 +23,8 @@ public class AuthController {
 
     private final IAuthService authService;
     private final JwtUtil jwtUtil;
+    private final TbSUserMapper userMapper;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping("/login")
     public R<Map<String, Object>> login(@RequestBody Map<String, String> params) {
@@ -46,6 +51,28 @@ public class AuthController {
 
     @PostMapping("/logout")
     public R<Void> logout() {
+        return R.ok();
+    }
+
+    /**
+     * 临时接口：重置指定用户的密码（仅用于测试）
+     * @param username 用户名
+     * @param newPassword 新密码
+     */
+    @PostMapping("/admin/reset-password")
+    public R<Void> resetPassword(@RequestBody Map<String, String> params) {
+        String username = params.get("username");
+        String newPassword = params.get("newPassword");
+
+        TbSUser user = userMapper.selectOne(
+            new LambdaQueryWrapper<TbSUser>()
+                .eq(TbSUser::getUsername, username)
+        );
+        if (user == null) {
+            throw new RuntimeException("用户不存在：" + username);
+        }
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userMapper.updateById(user);
         return R.ok();
     }
 
