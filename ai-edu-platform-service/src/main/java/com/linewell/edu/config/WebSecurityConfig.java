@@ -27,7 +27,6 @@ public class WebSecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/login").permitAll()
-                .requestMatchers("/auth/admin/reset-password").permitAll()  // 临时放行重置密码接口
                 .requestMatchers("/auth/**").authenticated()
                 .requestMatchers("/homework/**").authenticated()
                 .anyRequest().permitAll()
