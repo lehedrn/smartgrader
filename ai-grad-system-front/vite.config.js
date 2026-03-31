@@ -5,9 +5,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { viteMockServe } from 'vite-plugin-mock'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   const isMockEnabled = env.VITE_MOCK === 'true'
 
@@ -17,33 +16,44 @@ export default defineConfig(({ mode }) => {
   console.log('Mock Enabled:', isMockEnabled)
   console.log('===================')
 
-  return {
-    base: './',
-    plugins: [
-      vue(),
-      AutoImport({
-        imports: ['vue', 'vue-router', 'pinia'],
-        resolvers: [ElementPlusResolver()],
-        dts: 'src/auto-imports.d.ts',
-        eslintrc: {
-          enabled: true,
-        },
-      }),
-      Components({
-        resolvers: [ElementPlusResolver()],
-        dts: 'src/components.d.ts',
-      }),
-      createSvgIconsPlugin({
-        iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
-        symbolId: 'icon-[dir]-[name]',
-      }),
+  const plugins = [
+    vue(),
+    AutoImport({
+      imports: ['vue', 'vue-router', 'pinia'],
+      resolvers: [ElementPlusResolver()],
+      dts: 'src/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true,
+      },
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+      dts: 'src/components.d.ts',
+    }),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
+      symbolId: 'icon-[dir]-[name]',
+    }),
+  ]
+
+  // 只在启用 Mock 时添加插件
+  if (isMockEnabled) {
+    const { viteMockServe } = await import('vite-plugin-mock')
+    plugins.push(
       viteMockServe({
-        localEnabled: isMockEnabled,
+        localEnabled: true,
         prodEnabled: false,
         logger: true,
         mockPath: 'src/mock',
-      }),
-    ],
+      })
+    )
+  } else {
+    console.log('Mock is DISABLED. All /api requests will be proxied to backend.')
+  }
+
+  return {
+    base: './',
+    plugins,
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
@@ -57,6 +67,9 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: 'http://localhost:8080',
           changeOrigin: true,
+          // 确保代理配置正确
+          secure: false,
+          ws: true,
         },
       },
     },
