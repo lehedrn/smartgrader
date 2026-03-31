@@ -76,7 +76,7 @@ public class QuestionController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment",
-            URLEncoder.encode("题库导出.xlsx", StandardCharsets.UTF_8.name()).replace("+", "%20"));
+            URLEncoder.encode("题库导出.xlsx", StandardCharsets.UTF_8).replace("+", "%20"));
 
         return new ResponseEntity<>(excelData, headers, HttpStatus.OK);
     }
