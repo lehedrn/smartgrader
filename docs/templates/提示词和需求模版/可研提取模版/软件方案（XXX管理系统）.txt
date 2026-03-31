@@ -1,0 +1,156 @@
+1.1.1.1 xxxxxx分配及xxxxxx管
+实现xxxxxxxxx的指挥xxx与xxx记录管理。通过集成xxx与便捷的数据
+录入方式，提高xxxxxx效率，确保xxxxxx过程的精准管控与信息xxx。
+支持根据xxx到xxx时间、xxx种类和预计数量、xxx设备可用性等，系统进行xxx区是
+否可用的自动判定并通知xxx员及xxx管理人员。
+xxx到xxx后xxx管理人员对xxxxxxxxx物信息进行登记，包括xxx名称、数量、xxx名、
+转载车辆xxx等详细xxx记录信息。为了便利xxxxxx，支持通过小程序进行xxx移
+动端便捷录入。
+1.1.1.1.1 xxxxxx指挥xxx
+1.1.1.1.1.1 基础信息维护管理
+（1）xxx数据录入
+维护xxx各xxx类型xxx数量，按照不同xxx要求，对xxx内每个xxx的编号、位置、
+长度、宽度、xxx深、xxx能力等基础数据进行录入、存储和管理，形成完善的xxx信息数
+据库。
+（2）xxx区管理
+对xxx内的xxx区进行统一管理，维护xxxxxx区的长度、宽度、xxx数量等基础信息。
+支持通过维护xxx区多点位坐标，生成xxx区的虚拟xxxxxx区域范围。
+（3）xxx设备维护
+支持维护xxxxxx的xxx设备，如xxx、xxx等，系统可根据进出xxx申请情况核算指
+定时间段需要匹配的吊机、xxx数量，当存在xxx不足的情况时，向运维人员发出提醒。
+1.1.1.1.1.2 xxxxxx管理
+（1）xxxxxx申请
+xxx员结合预计到xxx时间、xxxxxx数量、预计xxx完成时间等提交xxxxxx申请。
+（2）xxx分配及调整
+系统根据xxx提交的进xxx、xxx申请，结合xxxxxx数量、预计xxx时间、xxx区xxx
+xxx区域xxxxxx数量等信息，进行xxx内是否有xxx空闲的判定。
+当系统判断有xxx空闲时通过移动端向进xxx申请人员发送有xxx可用提醒及向xxx
+管理人员发送xxx即将xxxxxx提醒。
+当xxxxxx少于进出xxx申请时间段所需xxx时，结合xxx预计到xxx时间进行预分配排
+队序号，系统结合xxx的xxxxxx及xxxxxx信息，将先到xxxxxx序号进行升序，自动调
+整xxx序号。
+xxxxxx运维人员可根据xxx实际xxx情况进行排序调整。
+（3）xxx可视化
+在xxx地图上展示xxx、xxx、停xxx区分布情况，呈现xxx底图的基础情况。基于申
+请进xxx的xxx数据，实现对等待进xxx的xxx进行呈现，包括xxx籍、xxx类型、xxx号，基于
+进xxxxxx控对xxx号的识别、xxx xxx识别，显示计划进xxxxxx是否已在xxx区内。
+基于进xxxxxx控对xxx号的识别、xxx xxx识别，通过不同颜色标注未提交进xxx申请的xxx
+xxx、非本xxxxxx籍的xxx，方便xxx人员进行xxxxxxxxx。
+（3）xxx状态更新
+利用虚拟xxxxxx、xxxxxx识别算法的建立，对xxx区是否有xxx空闲进行状态更新。
+支持结合xxx地图，手动更新xxx区状态。
+1.1.1.1.1.3 xxxxxx管理
+（1）xxxxxxxxx计时
+借助xxxxxx所构建的虚拟xxxxxx技术以及xxx xxx xxx功能，当xxx的 xxx 定
+位信号出现在预先设定的xxxxxx虚拟xxxxxx范围内时，系统将依据其xxx在该区域内
+的累计停留时长，计算各xxx的实际xxx时间。
+系统形成xxx记录，汇总xxx名称、xxx开始时间、结束时间等重要信息，支持通过
+xxx名、xxx号进行xxx查询。
+（2）xxxxxx确认
+xxxxxx管理公司的工作人员可依据系统所统计生成的xxxxxx只详细信息，前往xxx
+进行实地核对与确认。这一环节旨在有效规避因 xxx xxx可能出现的偏移现象而导致的
+统计误差，通过人工xxx核实，进一步保障xxxxxx只信息的精准性，为后续管理工作提供
+可靠的数据基础。
+（3）xxxxxx计费规则设置
+系统支持针对xxxxxx制定灵活的计费规则。可根据xxx需求，设定按照每 X 小时
+收费 Y 元的基础计费标准，同时针对超出规定xxx时长的情况，明确超时部分每小时收
+取 Z 元费用的计费方式。通过在系统中对这些参数的合理配置，实现对不同xxx时长xxx
+xxx的差异化计费核算。
+（4）xxx费用核算
+系统支持针对xxxxxx制定灵活的计费规则。可根据xxx需求，设定按照每 X 小时
+收费 Y 元的基础计费标准，同时针对超出规定xxx时长的情况，明确超时部分每小时收
+取 Z 元费用的计费方式。通过在系统中对这些参数的合理配置，实现对不同xxx时长xxx
+xxx的差异化计费核算。
+（5）费用清单
+根据核算结果形成费用核算清单。
+1.1.1.1.2 xxx规范化管理
+1.1.1.1.2.1 靠xxxxxx区占用预警
+可设置xxx预警时间，根据xxxxxx在xxx虚拟xxxxxx区域的累计xxx时间，对长
+时间占用靠xxxxxx区的xxx只进行汇总及预警信息推送。
+1.1.1.1.2.2 xxxxxx档案
+（1）xxx扣分规则设置
+对xxx完xxx后长时间在xxxxxx的xxx进行xxx扣分处理，扣分规则由xxx管理人
+员制定，设置停xxx超时时间及对应扣分分值。
+根据xxx分核算规则核算各xxxxxx分，支持对误判扣分进行恢复。
+（2）xxxxxx管理
+将xxxxxx扣分情况发送至xxx动态xxx控管理xxxxxx库模块，由xxx动态xxx控管理
+系统进行xxx总xxx分值情况核算。
+（3）xxxxxx分查询
+支持按照xxx进行xxx分查询。支持查看xxx历史扣分事项、扣分记录。
+（4）黑名单xxx管理
+针对xxx分过低的xxx只可加入黑名单，禁止进行进出xxx登记及进xxx后通过消息通知提
+醒相关管理人员。
+1.1.1.1.3 xxx记录及xxx
+1.1.1.1.3.1 xxx录入
+对xxxxxx进行记录，支持设置xxx类型，在xxx录入时可通过下拉快速选择本次捕
+捞xxx种类，录入xxx名称及xxx数量。
+1.1.1.1.3.2 xxxxxx信息登记
+xxx管理人员根据xxxxxx进行xxxxxx载车辆信息登记，支持上传车辆照片以便后续
+xxx。
+1.1.1.1.3.3 xxx时间记录
+xxx管理人员可进行实际xxx开始时间、完成时间确认，核算xxxxxx时长以及预计
+收费。
+支持进行费用的确认以及记录是否完成收费以便后期xxx。
+1.1.1.1.3.4 xxxxxx记录查询
+支持通过xxx检索xxx记录，包括时间、xxxxxx、涉及人员、转载车辆、xxx信息
+等。
+1.1.1.1.3.5 xxxxxx记录查询
+支持通过xxx检索xxx记录，包括时间、xxxxxx、涉及人员、转载车辆、xxx信息
+等。
+1.1.1.1.3.6 xxxxxx记录查询
+支持通过xxx检索xxx记录，包括时间、xxxxxx、xxx、涉及人员、转载车辆等。
+1.1.1.1.3.7 xxx时长统计
+支持根据管理人员登记的xxx开始时间、结束时间，自动生成各xxx的xxx时长记录。
+可根据时间、xxx名查询xxx时长记录。
+1.1.1.1.4 数据分析与统计
+1.1.1.1.4.1 停xxx数据统计
+（1）xxx使用统计
+对xxx的使用情况进行统计分析，包括每个xxx的占用时间、使用率、不同时间段的
+使用频率等数据，为xxxxxx的合理规划和优化提供依据。
+（2）xxx停xxx记录
+支持按照xxx名号生成该xxx的历史xxx统计记录，以便进行xxx。支持通过xxx名号、
+时间段进行是否xxx的记录查找。
+（3）xxx内停xxx统计
+按照周、月汇总到xxxxxx的xxx内停xxx时间，对于非本xxxxxx进行长时间xxx的标红显
+示，并单独推送至管理人员，支持按照xxx进行数据查询。
+1.1.1.1.4.2 xxx量统计
+（1）时间周期xxx量统计
+支持各xxx根据日、周、月统计xxx重量信息。支持查看单周的xxx量变动趋势及按
+月统计xxx量变动趋势。
+（2）分类xxx量统计
+支持根据日、周、月选择不同的xxx类型进行xxx重量信息统计。
+支持对比单日、单周、当月，不同xxx的重量变动趋势。
+1.1.1.1.5 移动小程序管理
+1.1.1.1.5.1 xxxxxx记录
+xxx运维人员可通过移动端xxx记录xxx的xxx记录，调用摄像头进行拍照xxx。支
+持记录的新增、修改、删除、查询。
+1.1.1.1.5.2 xxx状态更新
+xxx运维人员可对未实时更新xxx空闲状态，xxx核实为空闲的通过移动端进行xxx
+状态更新。
+1.1.1.1.5.3 xxx信息查询
+针对xxx完成，未规范xxx的xxx，xxx运维人员可通过移动端查询xxx的联系人信
+息，进行联系提醒。
+1.1.1.1.5.4 xxxxxx申请
+xxx员可提前通过移动端登记申请xxx，录入预计到xxx时间、xxx名称、重量、预计xxx
+xxx完成时间等。
+1.1.1.1.5.5 xxx提醒
+当系统判断有xxx空闲时通过移动端向进xxx申请人员发送有xxx可用提醒及向xxx
+管理人员发送xxx即将xxxxxx提醒。
+1.1.1.1.5.6 进xxx排序提醒
+当xxxxxx少于进出xxx申请时间段所需xxx时，结合xxx预计到xxx时间进行预分配排
+队序号，系统结合xxx的xxxxxx及xxxxxx信息，将先到xxxxxx序号进行升序，自动调
+整xxx序号。
+当有空闲xxx后，通知xxxxxx，对待xxxxxx排序进行更新及提醒。
+1.1.1.1.5.7 xxx安排及调整通知
+xxxxxx运维人员可根据xxx实际xxx情况进行xxx是否已xxx状态调整，等待xxx
+xxx的排序调整。
+1.1.1.1.5.8 xxx录入
+支持设置xxx类型，在xxx录入时可通过下拉快速选择本次xxxxxx种类，录入xxx
+名称及xxx数量。
+1.1.1.1.5.9 xxxxxx信息登记
+xxx管理人员根据xxxxxx进行xxxxxx载车辆信息登记，可拍摄照片以便后续xxx。
+1.1.1.1.5.10 xxx时间记录
+xxx管理人员可进行实际xxx开始时间、完成时间确认，核算xxxxxx时长。
+1.1.1.1.5.11 xxx记录查询
+支持通过xxx名号查找xxx的历史xxx记录，可查看记录详情，包括记录时间，xxx时
+间段，xxx拍摄照片、是否已完成xxx等信息。

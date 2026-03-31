@@ -1,0 +1,11 @@
+╭─── Claude Code v2.1.87 ──────────────────────────────────────────────────────╮
+│                                             │ Tips for getting started       │
+│                Welcome back!                │ Run /init to create a CLAUDE.… │
+│                                             │ ────────────────────────────── │
+│                   ▐▛███▜▌                   │ Recent activity                │
+│                  ▝▜█████▛▘                  │ No recent activity             │
+│                    ▘▘ ▝▝                    │                                │
+│                                             │                                │
+│      qwen3.5-plus · API Usage Billing       │                                │
+│   /home/workspace/com/ai_coding/project_1   │                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
