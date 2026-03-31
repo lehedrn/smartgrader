@@ -22,14 +22,14 @@ public class UserController {
 
     @GetMapping("/list")
     public R<Map<String, Object>> getList(
-        @RequestParam(defaultValue = "1") Integer page,
-        @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(required = false) String username,
-        @RequestParam(required = false) String realName,
-        @RequestParam(required = false) String userType,
-        @RequestParam(required = false) String status
+        @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+        @RequestParam(value = "username", required = false) String username,
+        @RequestParam(value = "realName", required = false) String realName,
+        @RequestParam(value = "userType", required = false) String userType,
+        @RequestParam(value = "status", required = false) String status
     ) {
-        Page<TbSUser> p = userService.findPage(page, pageSize, username, realName, userType, status);
+        Page<TbSUser> p = userService.findPage(pageNum, pageSize, username, realName, userType, status);
         Map<String, Object> result = new HashMap<>();
         result.put("list", p.getRecords());
         result.put("total", p.getTotal());

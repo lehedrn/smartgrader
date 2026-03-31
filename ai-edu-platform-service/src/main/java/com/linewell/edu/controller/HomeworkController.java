@@ -23,13 +23,13 @@ public class HomeworkController {
 
     @GetMapping("/list")
     public R<Map<String, Object>> getList(
-        @RequestParam(defaultValue = "1") Integer page,
-        @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(required = false) String subject,
-        @RequestParam(required = false) String type,
-        @RequestParam(required = false) String className
+        @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+        @RequestParam(value = "subject", required = false) String subject,
+        @RequestParam(value = "type", required = false) String type,
+        @RequestParam(value = "className", required = false) String className
     ) {
-        Page<TbBHomework> p = homeworkService.findPage(page, pageSize, subject, type, className);
+        Page<TbBHomework> p = homeworkService.findPage(pageNum, pageSize, subject, type, className);
         Map<String, Object> result = new HashMap<>();
         result.put("list", p.getRecords());
         result.put("total", p.getTotal());

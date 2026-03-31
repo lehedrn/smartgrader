@@ -23,12 +23,12 @@ public class RoleController {
 
     @GetMapping("/list")
     public R<Map<String, Object>> getList(
-        @RequestParam(defaultValue = "1") Integer page,
-        @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(required = false) String roleCode,
-        @RequestParam(required = false) String roleName
+        @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+        @RequestParam(value = "roleCode", required = false) String roleCode,
+        @RequestParam(value = "roleName", required = false) String roleName
     ) {
-        Page<TbSRole> p = roleService.findPage(page, pageSize, roleCode, roleName);
+        Page<TbSRole> p = roleService.findPage(pageNum, pageSize, roleCode, roleName);
         Map<String, Object> result = new HashMap<>();
         result.put("list", p.getRecords());
         result.put("total", p.getTotal());

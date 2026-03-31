@@ -22,13 +22,13 @@ public class MistakeController {
 
     @GetMapping("/list")
     public R<Map<String, Object>> getList(
-        @RequestParam(defaultValue = "1") Integer page,
-        @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(required = false) String studentId,
-        @RequestParam(required = false) String subject,
-        @RequestParam(required = false) Integer mastered
+        @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+        @RequestParam(value = "studentId", required = false) String studentId,
+        @RequestParam(value = "subject", required = false) String subject,
+        @RequestParam(value = "mastered", required = false) Integer mastered
     ) {
-        Page<TbBMistake> p = mistakeService.findPage(page, pageSize, studentId, subject, mastered);
+        Page<TbBMistake> p = mistakeService.findPage(pageNum, pageSize, studentId, subject, mastered);
         Map<String, Object> result = new HashMap<>();
         result.put("list", p.getRecords());
         result.put("total", p.getTotal());

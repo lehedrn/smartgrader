@@ -9,6 +9,13 @@ import { viteMockServe } from 'vite-plugin-mock'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
+  const isMockEnabled = env.VITE_MOCK === 'true'
+
+  console.log('=== Vite Config ===')
+  console.log('Mode:', mode)
+  console.log('VITE_MOCK:', env.VITE_MOCK)
+  console.log('Mock Enabled:', isMockEnabled)
+  console.log('===================')
 
   return {
     base: './',
@@ -31,7 +38,7 @@ export default defineConfig(({ mode }) => {
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
-        localEnabled: env.VITE_MOCK === 'true',
+        localEnabled: isMockEnabled,
         prodEnabled: false,
         logger: true,
         mockPath: 'src/mock',
@@ -45,7 +52,7 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0',
       port: Number(env.VITE_PORT) || 3000,
-      open: true,
+      open: false,
       proxy: {
         '/api': {
           target: 'http://localhost:8080',

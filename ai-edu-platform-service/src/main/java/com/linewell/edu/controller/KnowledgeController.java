@@ -23,12 +23,12 @@ public class KnowledgeController {
 
     @GetMapping("/list")
     public R<Map<String, Object>> getList(
-        @RequestParam(defaultValue = "1") Integer page,
-        @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(required = false) String subject,
-        @RequestParam(required = false) String grade
+        @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+        @RequestParam(value = "subject", required = false) String subject,
+        @RequestParam(value = "grade", required = false) String grade
     ) {
-        Page<TbBKnowledge> p = knowledgeService.findPage(page, pageSize, subject, grade);
+        Page<TbBKnowledge> p = knowledgeService.findPage(pageNum, pageSize, subject, grade);
         Map<String, Object> result = new HashMap<>();
         result.put("list", p.getRecords());
         result.put("total", p.getTotal());

@@ -29,14 +29,14 @@ public class QuestionController {
 
     @GetMapping("/list")
     public R<Map<String, Object>> getList(
-        @RequestParam(defaultValue = "1") Integer page,
-        @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(required = false) String subject,
-        @RequestParam(required = false) String type,
-        @RequestParam(required = false) String difficulty,
-        @RequestParam(required = false) String knowledge
+        @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+        @RequestParam(value = "subject", required = false) String subject,
+        @RequestParam(value = "type", required = false) String type,
+        @RequestParam(value = "difficulty", required = false) String difficulty,
+        @RequestParam(value = "knowledge", required = false) String knowledge
     ) {
-        Page<TbBQuestion> p = questionService.findPage(page, pageSize, subject, type, difficulty, knowledge);
+        Page<TbBQuestion> p = questionService.findPage(pageNum, pageSize, subject, type, difficulty, knowledge);
         Map<String, Object> result = new HashMap<>();
         result.put("list", p.getRecords());
         result.put("total", p.getTotal());
