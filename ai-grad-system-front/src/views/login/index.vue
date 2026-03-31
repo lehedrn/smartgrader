@@ -5,7 +5,7 @@
       <div class="login-card">
         <div class="login-header">
           <div class="logo-wrapper">
-            <el-icon :size="48" color="#ffffff"><GraduationCap /></el-icon>
+            <el-icon :size="48" color="#ffffff"><School /></el-icon>
           </div>
           <h2 class="title">智能作业批阅平台</h2>
           <p class="subtitle">Intelligent Homework Grading Platform</p>
@@ -64,7 +64,8 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElIcon } from 'element-plus'
+import { School } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { storage } from '@/utils/storage'
 
