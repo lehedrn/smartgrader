@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
-        localEnabled: true,
+        localEnabled: env.VITE_MOCK === 'true',
         prodEnabled: false,
         logger: true,
         mockPath: 'src/mock',
