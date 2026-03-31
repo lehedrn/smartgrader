@@ -22,7 +22,7 @@ export function login(data) {
  */
 export function getUserInfo() {
   return request({
-    url: '/auth/userinfo',
+    url: '/auth/info',
     method: 'get',
   })
 }
@@ -47,7 +47,7 @@ export function logout() {
  */
 export function changePassword(data) {
   return request({
-    url: '/auth/password',
+    url: '/auth/changePassword',
     method: 'post',
     data,
   })
