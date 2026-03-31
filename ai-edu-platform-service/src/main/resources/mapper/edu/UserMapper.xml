@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linewell.edu.mapper.UserMapper">
+
+    <resultMap type="com.linewell.edu.entity.TbSUser" id="TbSUserMap">
+        <result property="id" column="ID" />
+        <result property="username" column="USERNAME" />
+        <result property="password" column="PASSWORD" />
+        <result property="realName" column="REAL_NAME" />
+        <result property="avatar" column="AVATAR" />
+        <result property="organization" column="ORGANIZATION" />
+        <result property="phone" column="PHONE" />
+        <result property="email" column="EMAIL" />
+        <result property="userType" column="USER_TYPE" />
+        <result property="status" column="STATUS" />
+        <result property="cjr" column="CJR" />
+        <result property="cjsj" column="CJSJ" />
+        <result property="gxr" column="GXR" />
+        <result property="gxsj" column="GXSJ" />
+        <result property="ljsc" column="LJSC" />
+    </resultMap>
+
+</mapper>

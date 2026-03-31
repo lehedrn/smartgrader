@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linewell.edu.mapper.RoleMapper">
+
+    <resultMap type="com.linewell.edu.entity.TbSRole" id="TbSRoleMap">
+        <result property="id" column="ID" />
+        <result property="roleCode" column="ROLE_CODE" />
+        <result property="roleName" column="ROLE_NAME" />
+        <result property="remark" column="REMARK" />
+        <result property="cjr" column="CJR" />
+        <result property="cjsj" column="CJSJ" />
+        <result property="gxr" column="GXR" />
+        <result property="gxsj" column="GXSJ" />
+        <result property="ljsc" column="LJSC" />
+    </resultMap>
+
+</mapper>

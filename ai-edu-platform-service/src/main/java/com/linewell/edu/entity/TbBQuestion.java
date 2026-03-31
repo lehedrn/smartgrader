@@ -17,8 +17,12 @@ public class TbBQuestion extends BaseEntity {
     private String subject;
     private String type;
     private String difficulty;
-    private String knowledge;
+    private String knowledgeIds;
     private String content;
+    private String options;
     private String answer;
+    private String analysis;
     private BigDecimal score;
+    private String grade;
+    private String source;
 }

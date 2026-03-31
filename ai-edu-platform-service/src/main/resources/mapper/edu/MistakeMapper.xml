@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linewell.edu.mapper.MistakeMapper">
+
+    <resultMap type="com.linewell.edu.entity.TbBMistake" id="TbBMistakeMap">
+        <result property="id" column="ID" />
+        <result property="studentId" column="STUDENT_ID" />
+        <result property="questionId" column="QUESTION_ID" />
+        <result property="homeworkId" column="HOMEWORK_ID" />
+        <result property="wrongAnswer" column="WRONG_ANSWER" />
+        <result property="correctAnswer" column="CORRECT_ANSWER" />
+        <result property="errorCount" column="ERROR_COUNT" />
+        <result property="lastErrorTime" column="LAST_ERROR_TIME" />
+        <result property="mastered" column="MASTERED" />
+        <result property="cjr" column="CJR" />
+        <result property="cjsj" column="CJSJ" />
+        <result property="gxr" column="GXR" />
+        <result property="gxsj" column="GXSJ" />
+        <result property="ljsc" column="LJSC" />
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linewell.edu.mapper.KnowledgeMapper">
+
+    <resultMap type="com.linewell.edu.entity.TbBKnowledge" id="TbBKnowledgeMap">
+        <result property="id" column="ID" />
+        <result property="knowledgeName" column="KNOWLEDGE_NAME" />
+        <result property="subject" column="SUBJECT" />
+        <result property="grade" column="GRADE" />
+        <result property="parentId" column="PARENT_ID" />
+        <result property="path" column="PATH" />
+        <result property="cjr" column="CJR" />
+        <result property="cjsj" column="CJSJ" />
+        <result property="gxr" column="GXR" />
+        <result property="gxsj" column="GXSJ" />
+        <result property="ljsc" column="LJSC" />
+    </resultMap>
+
+</mapper>
