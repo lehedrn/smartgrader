@@ -1,0 +1,51 @@
+// 主题色 - 科技蓝
+$primary-color: #409EFF;
+$primary-light: #ecf5ff;
+$primary-dark: #337ecc;
+
+// 渐变色 - 科技蓝紫融合
+$gradient-blue-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$gradient-blue-deep: linear-gradient(135deg, #409EFF 0%, #2c5282 100%);
+$gradient-login-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #409EFF 100%);
+
+// 功能色
+$success-color: #67C23A;
+$warning-color: #E6A23C;
+$danger-color: #F56C6C;
+$info-color: #909399;
+
+// 文字颜色
+$text-primary: #303133;
+$text-regular: #606266;
+$text-secondary: #909399;
+$text-placeholder: #C0C4CC;
+
+// 背景色
+$bg-page: #f5f7fa;
+$bg-white: #ffffff;
+$bg-overlay: rgba(0, 0, 0, 0.5);
+
+// 边框颜色
+$border-color: #DCDFE6;
+$border-light: #E4E7ED;
+
+// 阴影
+$shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 16px 0 rgba(0, 0, 0, 0.12);
+$shadow-dark: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
+
+// 尺寸
+$sidebar-width: 210px;
+$header-height: 50px;
+$tags-view-height: 34px;
+
+// 动画
+$transition-base: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition-fast: all 0.2s ease-in-out;
+$transition-slow: all 0.5s ease-in-out;
+
+// 断点
+$breakpoint-xs: 768px;
+$breakpoint-sm: 992px;
+$breakpoint-md: 1200px;
+$breakpoint-lg: 1920px;
