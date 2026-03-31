@@ -18,4 +18,9 @@ public interface IQuestionService extends IService<TbBQuestion> {
      * 批量删除题库
      */
     void deleteByIds(String ids);
+
+    /**
+     * 导出题库为 Excel
+     */
+    byte[] exportToExcel(String subject, String type);
 }

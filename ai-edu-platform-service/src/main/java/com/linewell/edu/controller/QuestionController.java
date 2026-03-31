@@ -5,8 +5,14 @@ import com.linewell.edu.common.R;
 import com.linewell.edu.entity.TbBQuestion;
 import com.linewell.edu.service.IQuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,11 +67,17 @@ public class QuestionController {
     }
 
     @GetMapping("/export")
-    public R<Void> export(
+    public ResponseEntity<byte[]> export(
         @RequestParam(required = false) String subject,
         @RequestParam(required = false) String type
     ) {
-        // TODO: 实现导出功能
-        return R.ok();
+        byte[] excelData = questionService.exportToExcel(subject, type);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment",
+            URLEncoder.encode("题库导出.xlsx", StandardCharsets.UTF_8.name()).replace("+", "%20"));
+
+        return new ResponseEntity<>(excelData, headers, HttpStatus.OK);
     }
 }
